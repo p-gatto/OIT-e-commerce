@@ -1,6 +1,6 @@
 import { createFeature, createReducer, on } from "@ngrx/store"
 
-import { increment } from "./counter.actions";
+import { incrementAction } from "./counter.actions";
 
 export interface CounterState {
     value: number;
@@ -17,6 +17,6 @@ export const counterFeature = createFeature({
     name: 'counter',
     reducer: createReducer(
         initialState,
-        on(increment, state => ({ value: state.value + 1 }))
+        on(incrementAction, state => ({ value: state.value + 1 }))
     )
 })
