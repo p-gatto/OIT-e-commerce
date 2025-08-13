@@ -6,7 +6,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { routes } from './app.routes';
 
-import { counterFeature, CounterState } from './core/store/counter.reducer';
+import { counterFeature, CounterState } from './core/store/counter.features';
 
 export type AppState = {
   home: number[];
@@ -19,8 +19,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideStore(),
     provideState({ name: 'home', reducer: () => [1, 2, 3] }),
-    /*  provideState({ name: 'counter', reducer: counterReducer }), */ // con le features questa linea di codice la sostituisco con la seguente
-    provideState(counterFeature),
+    provideState({ name: 'counter', reducer: counterFeature.reducer }), // con le features questa linea di codice la sostituisco con la seguente
+    /* provideState(counterFeature), */
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
   ]
 };
