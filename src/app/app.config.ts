@@ -6,7 +6,12 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { routes } from './app.routes';
 
-import { counterFeature } from './core/store/counter.reducer';
+import { counterFeature, CounterState } from './core/store/counter.reducer';
+
+export type AppState = {
+  home: number[];
+  counter: CounterState;
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
