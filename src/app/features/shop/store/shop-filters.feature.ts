@@ -1,9 +1,10 @@
-import { createFeature, createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 
 import { ShopFilters } from '../shop-filters/shop-filters.model';
-import { ShopFiltersActions } from './shop-filters.actions';
 
-// 1. the initial state
+import { ShopFiltersActions } from './shop-filters.actions';
+import { selectList } from '../../../core/products/store/products.features';
+
 const initialState: ShopFilters = {
     text: '',
     cost: 2,
@@ -12,7 +13,6 @@ const initialState: ShopFilters = {
     paper: true
 }
 
-// 2. the reducer
 export const shopFiltersFeature = createFeature({
     name: 'shopFilters',
     reducer: createReducer(
@@ -21,15 +21,28 @@ export const shopFiltersFeature = createFeature({
             ...state, ...action.filters
         })),
     ),
+    extraSelectors: ({ selectShopFiltersState }) => ({
+        selectFilteredList: createSelector(
+            selectList,
+            selectShopFiltersState,
+            (list, filters) => list
+                .filter(p => p.name.toLowerCase().includes(filters.text.toLowerCase()))
+                .filter(p => p.cost <= filters.cost)
+                .filter(p => {
+                    return (filters.wood && p.type === 'wood') ||
+                        (filters.paper && p.type === 'paper') ||
+                        (filters.plastic && p.type === 'plastic')
+                })
+        )
+    })
 });
 
-// 3. export available selectors
-// (one for each filter + the whole state)
 export const {
     selectText,
     selectCost,
     selectWood,
     selectPlastic,
     selectPaper,
-    selectShopFiltersState,
+    selectFilteredList,
+    selectShopFiltersState
 } = shopFiltersFeature;

@@ -10,8 +10,10 @@ import { CartActions } from '../cart/store/cart.actions';
 import { Product } from '../../core/products/product.model';
 
 import { ShopFiltersComponent } from './shop-filters/shop-filters.component';
+
 import { ShopFilters } from './shop-filters/shop-filters.model';
 import { ShopFiltersActions } from './store/shop-filters.actions';
+import { selectFilteredList } from './store/shop-filters.feature';
 
 @Component({
   selector: 'app-shop',
@@ -24,7 +26,7 @@ import { ShopFiltersActions } from './store/shop-filters.actions';
 export default class ShopComponent {
 
   store = inject(Store);
-  products = this.store.selectSignal(selectList);
+  products = this.store.selectSignal(selectFilteredList)
 
   ngOnInit() {
     this.store.dispatch(ProductsActions.load());
