@@ -9,9 +9,13 @@ import { CartActions } from '../cart/store/cart.actions';
 
 import { Product } from '../../core/products/product.model';
 
+import { ShopFiltersComponent } from './shop-filters/shop-filters.component';
+
 @Component({
   selector: 'app-shop',
-  imports: [],
+  imports: [
+    ShopFiltersComponent
+  ],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss'
 })
