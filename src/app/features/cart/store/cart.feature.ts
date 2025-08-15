@@ -66,6 +66,12 @@ export const cartFeature = createFeature({
                 ...state,
                 list: state.list.filter(item => item.product.id !== action.id)
             }
+        }),
+        on(CartActions.loadedFromLocalStorage, (state, action) => {
+            return ({
+                ...state,
+                list: action.items
+            })
         })
     ),
     extraSelectors: ({ selectList }) => ({

@@ -1,10 +1,12 @@
 import { createActionGroup, props } from '@ngrx/store';
 
 import { Product } from '../../../core/products/product.model';
+import { CartItem } from '../cart-item.model';
 
 export const CartActions = createActionGroup({
     source: 'Cart',
     events: {
+        'Loaded From Local Storage': props<{ items: CartItem[] }>(),
         'Add': props<{ item: Product }>(),
         'Remove': props<{ id: number }>(),
         'Increase Quantity': props<{ id: number }>(),

@@ -10,6 +10,7 @@ import { routes } from './app.routes';
 
 import { counterFeature, CounterState } from './features/counter/store/counter.features';
 import * as productsEffects from './core/products/store/products.effects';
+import * as cartEffects from './features/cart/store/cart.effects';
 import { productsFeature } from './core/products/store/products.features';
 
 import { cartFeature } from './features/cart/store/cart.feature';
@@ -38,6 +39,6 @@ export const appConfig: ApplicationConfig = {
     /* provideState({ name: productsFeature.name, reducer: productsFeature.reducer }), */
     provideState(productsFeature),  // SHORT Version
     provideState({ name: cartFeature.name, reducer: cartFeature.reducer }),
-    provideEffects([productsEffects])
+    provideEffects([productsEffects, cartEffects])
   ]
 };
