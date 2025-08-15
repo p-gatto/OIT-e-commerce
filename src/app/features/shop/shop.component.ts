@@ -10,6 +10,8 @@ import { CartActions } from '../cart/store/cart.actions';
 import { Product } from '../../core/products/product.model';
 
 import { ShopFiltersComponent } from './shop-filters/shop-filters.component';
+import { ShopFilters } from './shop-filters/shop-filters.model';
+import { ShopFiltersActions } from './store/shop-filters.actions';
 
 @Component({
   selector: 'app-shop',
@@ -20,6 +22,7 @@ import { ShopFiltersComponent } from './shop-filters/shop-filters.component';
   styleUrl: './shop.component.scss'
 })
 export default class ShopComponent {
+
   store = inject(Store);
   products = this.store.selectSignal(selectList);
 
@@ -31,8 +34,9 @@ export default class ShopComponent {
     this.store.dispatch(CartActions.add({ item: product }))
   }
 
-  dispatchAnAction() {
-    // here we'll dispatch the action
+  updateFilter(filters: Partial<ShopFilters>) {
+    this.store.dispatch(ShopFiltersActions.update({ filters }));
+    console.log(filters);
   }
 
 }

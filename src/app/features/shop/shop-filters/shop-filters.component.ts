@@ -4,6 +4,8 @@ import { FormBuilder, ReactiveFormsModule } from "@angular/forms";
 
 import { debounceTime } from 'rxjs';
 
+import { ShopFilters } from './shop-filters.model';
+
 @Component({
   selector: 'app-shop-filters',
   imports: [
@@ -15,7 +17,7 @@ import { debounceTime } from 'rxjs';
 })
 export class ShopFiltersComponent {
 
-  changeFilters = output<any>();
+  changeFilters = output<Partial<ShopFilters>>();
 
   fb = inject(FormBuilder);
 

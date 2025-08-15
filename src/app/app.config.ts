@@ -8,17 +8,13 @@ import { provideEffects } from '@ngrx/effects';   //  NGRX Effects is a middlewa
 
 import { routes } from './app.routes';
 
-import { counterFeature, CounterState } from './features/counter/store/counter.features';
 import * as productsEffects from './core/products/store/products.effects';
 import * as cartEffects from './features/cart/store/cart.effects';
+
+import { counterFeature, CounterState } from './features/counter/store/counter.features';
 import { productsFeature } from './core/products/store/products.features';
-
 import { cartFeature } from './features/cart/store/cart.feature';
-
-export type AppState = {
-  home: number[];
-  counter: CounterState;
-}
+import { shopFiltersFeature } from './features/shop/store/shop-filters.feature';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -32,13 +28,11 @@ export const appConfig: ApplicationConfig = {
         strictActionTypeUniqueness: true
       }
     }),
-    provideState({ name: 'home', reducer: () => [1, 2, 3] }),
-    /* provideState({ name: 'counter', reducer: counterFeature.reducer }), */ // con le features questa linea di codice la sostituisco con la seguente
-    /* provideState(counterFeature), */
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    /* provideState({ name: productsFeature.name, reducer: productsFeature.reducer }), */
-    provideState(productsFeature),  // SHORT Version
+    /* provideState(productsFeature),  // SHORT Version */
+    provideState({ name: productsFeature.name, reducer: productsFeature.reducer }),
     provideState({ name: cartFeature.name, reducer: cartFeature.reducer }),
+    provideState({ name: shopFiltersFeature.name, reducer: shopFiltersFeature.reducer }),
     provideEffects([productsEffects, cartEffects])
   ]
 };
