@@ -1,4 +1,9 @@
-counter works! {{counter()}}
+<div class="text-xl my-4">Counter: {{counter()}}</div>
+<div class="text-xl my-4">Multiplier: {{multiplier()}}</div>
+<div class="text-xl my-4">Total: {{total()}}</div>
+
 <button (click)="inc()" class="btn">+</button>
 <button (click)="dec()" class="btn">-</button>
 <button (click)="resetToZero()" class="btn">Reset</button>
+<button (click)="changeMultiplier(5)" class="btn">Multiplier: 5</button>
+<button (click)="changeMultiplier(10)" class="btn">Multiplier: 10</button>
