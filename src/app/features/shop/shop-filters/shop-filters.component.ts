@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from "@angular/forms";
 
 import { debounceTime } from 'rxjs';
@@ -15,6 +15,8 @@ import { debounceTime } from 'rxjs';
 })
 export class ShopFiltersComponent {
 
+  changeFilters = output<any>();
+
   fb = inject(FormBuilder);
 
   form = this.fb.nonNullable.group({
@@ -25,12 +27,14 @@ export class ShopFiltersComponent {
     paper: false    // initialized to false
   });
 
+
   constructor() {
     this.form.valueChanges
       .pipe(
         debounceTime(1000)
       )
       .subscribe(data => {
+        this.changeFilters.emit(this.form.value);
         console.log(this.form.value) // output { text: '...', cost: '', wood: true, ....}
       })
   }

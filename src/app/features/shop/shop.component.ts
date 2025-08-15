@@ -31,4 +31,8 @@ export default class ShopComponent {
     this.store.dispatch(CartActions.add({ item: product }))
   }
 
+  dispatchAnAction() {
+    // here we'll dispatch the action
+  }
+
 }
