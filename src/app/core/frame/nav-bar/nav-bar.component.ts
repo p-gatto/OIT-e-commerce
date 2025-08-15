@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+
+import { Store } from '@ngrx/store';
+
+import { selectIsCartEmpty, selectList, selectTotalCartCost, selectTotalCartItems } from '../../../features/cart/store/cart.feature';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,5 +14,12 @@ import { RouterLink } from '@angular/router';
   styleUrl: './nav-bar.component.scss'
 })
 export class NavBarComponent {
+
+  store = inject(Store);
+  /* cartList = this.store.selectSignal(selectList); */
+
+  totalCartItems = this.store.selectSignal(selectTotalCartItems)
+  totalCost = this.store.selectSignal(selectTotalCartCost)
+  isEmpty = this.store.selectSignal(selectIsCartEmpty)
 
 }

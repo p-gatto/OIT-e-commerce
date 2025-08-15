@@ -1,1 +1,21 @@
-<p>cart works!</p>
+@if(isCartEmpty()) {
+
+<div class="alert alert-error">Your Cart is Empty</div>
+
+} @else {
+<h1 class="text-xl my-6 font-bold ">Cart ({{totalCartItems()}} products)</h1>
+
+@for (item of cartList(); track item.id) {
+
+<li>
+    {{item.name}}: € {{item.cost}}
+    <button (click)="deleteItem(item)" class="btn btn-error">Delete</button>
+</li>
+
+}
+
+<div class="text-xl my-6 font-bold">
+    total: € {{totalCost()}}
+</div>
+
+}

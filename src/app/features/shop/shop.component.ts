@@ -3,6 +3,11 @@ import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { ProductsActions } from '../../core/products/store/products.actions';
+import { selectList } from '../../core/products/store/products.features';
+
+import { CartActions } from '../cart/store/cart.actions';
+
+import { Product } from '../../core/products/product.model';
 
 @Component({
   selector: 'app-shop',
@@ -11,9 +16,15 @@ import { ProductsActions } from '../../core/products/store/products.actions';
   styleUrl: './shop.component.scss'
 })
 export default class ShopComponent {
-  store = inject(Store)
+  store = inject(Store);
+  products = this.store.selectSignal(selectList);
 
   ngOnInit() {
-    this.store.dispatch(ProductsActions.load())
+    this.store.dispatch(ProductsActions.load());
   }
+
+  addProductToCart(product: Product) {
+    this.store.dispatch(CartActions.add({ item: product }))
+  }
+
 }
