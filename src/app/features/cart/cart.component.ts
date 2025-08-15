@@ -3,8 +3,9 @@ import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { selectIsCartEmpty, selectList, selectTotalCartCost, selectTotalCartItems } from './store/cart.feature';
-import { Product } from '../../core/products/product.model';
+
 import { CartActions } from './store/cart.actions';
+import { CartItem } from './cart-item.model';
 
 @Component({
   selector: 'app-cart',
@@ -21,8 +22,15 @@ export default class CartComponent {
   totalCartItems = this.store.selectSignal(selectTotalCartItems);
   totalCost = this.store.selectSignal(selectTotalCartCost);
 
-  deleteItem(item: Product) {
-    this.store.dispatch(CartActions.remove({ id: item.id }))
+  deleteItem(item: CartItem) {
+    this.store.dispatch(CartActions.remove({ id: item.product.id }))
+  }
+
+  decreaseQty(cartItemId: number) {
+    this.store.dispatch(CartActions.decreaseQuantity({ id: cartItemId }))
+  }
+  increaseQty(cartItemId: number) {
+    this.store.dispatch(CartActions.increaseQuantity({ id: cartItemId }))
   }
 
 }
