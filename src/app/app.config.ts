@@ -10,6 +10,7 @@ import { routes } from './app.routes';
 
 import * as productsEffects from './core/products/store/products.effects';
 import * as cartEffects from './features/cart/store/cart.effects';
+import * as orderEffects from './features/shop-order-form/store/order.effects';
 
 import { counterFeature, CounterState } from './features/counter/store/counter.features';
 import { productsFeature } from './core/products/store/products.features';
@@ -35,6 +36,6 @@ export const appConfig: ApplicationConfig = {
     provideState({ name: cartFeature.name, reducer: cartFeature.reducer }),
     provideState({ name: shopFiltersFeature.name, reducer: shopFiltersFeature.reducer }),
     provideState({ name: UIFeature.name, reducer: UIFeature.reducer }),
-    provideEffects([productsEffects, cartEffects])
+    provideEffects([productsEffects, cartEffects, orderEffects])
   ]
 };

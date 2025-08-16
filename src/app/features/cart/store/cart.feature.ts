@@ -72,7 +72,11 @@ export const cartFeature = createFeature({
                 ...state,
                 list: action.items
             })
-        })
+        }),
+        on(CartActions.clear, (state): CartState => ({
+            ...state,
+            list: []
+        }))
     ),
     extraSelectors: ({ selectList }) => ({
         selectIsCartEmpty: createSelector(
