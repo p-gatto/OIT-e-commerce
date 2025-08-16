@@ -1,5 +1,7 @@
 <!--ERROR ALERT-->
+@if (error()) {
 <div class="alert alert-error">Server error</div>
+}
 
 <div class="flex items-center gap-1">
     <!--ADD-->
@@ -18,7 +20,9 @@
     </div>
 
     <!--PENDING-->
+    @if(pending()) {
     <span class="loading loading-spinner loading-md"></span>
+    }
 </div>
 
 <!--FORM EDIT / ADD-->
@@ -51,12 +55,16 @@
         </thead>
 
         <tbody>
+            @for(product of products(); track product.id) {
             <tr>
-                <th>...</th>
-                <td>Product Name</td>
-                <td>Wood</td>
-                <td>€ 1</td>
+                <td>
+                    <img [src]="product.image" alt="" width="50">
+                </td>
+                <td>{{product.name}}</td>
+                <td>{{product.type}}</td>
+                <td>€ {{product.cost}}</td>
             </tr>
+            }
         </tbody>
     </table>
 </div>

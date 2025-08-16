@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { catchError, map, mergeMap, of } from 'rxjs';
+import { catchError, delay, map, mergeMap, of } from 'rxjs';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
@@ -19,6 +19,7 @@ export const loadProducts = createEffect(
             mergeMap(() =>
                 http.get<Product[]>('http://localhost:3001/products')
                     .pipe(
+                        delay(5000),
                         map((items) =>
                             ProductsActions.loadSuccess({ items })
                         ),
