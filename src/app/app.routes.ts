@@ -1,13 +1,30 @@
-import { Routes } from '@angular/router';
+import { inject } from '@angular/core';
+import { Router, Routes } from '@angular/router';
 
-import { provideState } from '@ngrx/store';
+import { provideState, Store } from '@ngrx/store';
 
 import { counterFeature } from './features/counter/store/counter.features';
+import { selectIsCartEmpty } from './features/cart/store/cart.feature';
 
 export const routes: Routes = [
     { path: 'shop', loadComponent: () => import('./features/shop/shop.component') },
     { path: 'cart', loadComponent: () => import('./features/cart/cart.component') },
-    { path: 'order-form', loadComponent: () => import('./features/shop-order-form/shop-order-form.component') },
+    {
+        path: 'order-form',
+        loadComponent: () => import('./features/shop-order-form/shop-order-form.component'),
+        canActivate: [      //  canActivate: [ guard1, guard2, ...]  Normal application with guard (external function that retur boolean. Now with inline funciton.
+            () => {         // return true;   => the route is accessible . return false => the route is not accessible.
+                const store = inject(Store)
+                const router = inject(Router)
+                const isCartEmpty = store.selectSignal(selectIsCartEmpty)
+                // redirect if cart is empty
+                if (isCartEmpty()) {
+                    router.navigateByUrl('shop')
+                }
+                return !isCartEmpty()
+            }
+        ]
+    },
     {
         path: 'counter',
         loadComponent: () => import('./features/counter/counter.component'),
