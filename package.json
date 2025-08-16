@@ -1,6 +1,6 @@
 {
   "name": "oit-e-commerce",
-  "version": "0.7.6",
+  "version": "0.8.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

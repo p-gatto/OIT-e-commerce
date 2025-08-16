@@ -32,5 +32,6 @@ export const routes: Routes = [
             provideState({ name: 'counter', reducer: counterFeature.reducer }),
         ]
     },
+    { path: 'cms', loadComponent: () => import('./features/cms/cms.component') },
     { path: '', redirectTo: 'shop', pathMatch: 'full' }
 ];
