@@ -1,13 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
+import { Store } from '@ngrx/store';
+
+import { OrderUserForm } from './order-user-form.model';
 import { UserCartSummaryComponent } from './user-cart-summary/user-cart-summary.component';
 import { UserInfoFormComponent } from './user-info-form/user-info-form.component';
 
-import { OrderUserForm } from './order-user-form.model';
+import { CartItem } from '../cart/cart-item.model';
+import { selectList, selectTotalCartCost } from '../cart/store/cart.feature';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-shop-order-form',
   imports: [
+    JsonPipe,
     UserCartSummaryComponent,
     UserInfoFormComponent
   ],
@@ -15,6 +21,10 @@ import { OrderUserForm } from './order-user-form.model';
   styleUrl: './shop-order-form.component.scss'
 })
 export default class ShopOrderFormComponent {
+
+  store = inject(Store);
+  cartList = this.store.selectSignal<CartItem[]>(selectList);
+  totalCost = this.store.selectSignal(selectTotalCartCost);
 
   sendOrder(formData: OrderUserForm) {
     console.log(formData);

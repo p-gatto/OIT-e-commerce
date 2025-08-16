@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+
+import { CartItem } from '../../cart/cart-item.model';
 
 @Component({
   selector: 'app-user-cart-summary',
@@ -7,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrl: './user-cart-summary.component.scss'
 })
 export class UserCartSummaryComponent {
+
+  list = input.required<CartItem[]>();
+  totalCost = input.required<number>();
+
+  shippingCost = 10;
 
 }
