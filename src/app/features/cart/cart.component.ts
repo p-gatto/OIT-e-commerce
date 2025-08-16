@@ -6,10 +6,13 @@ import { selectIsCartEmpty, selectList, selectTotalCartCost, selectTotalCartItem
 
 import { CartActions } from './store/cart.actions';
 import { CartItem } from './cart-item.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })

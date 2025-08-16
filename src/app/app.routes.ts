@@ -7,6 +7,7 @@ import { counterFeature } from './features/counter/store/counter.features';
 export const routes: Routes = [
     { path: 'shop', loadComponent: () => import('./features/shop/shop.component') },
     { path: 'cart', loadComponent: () => import('./features/cart/cart.component') },
+    { path: 'order-form', loadComponent: () => import('./features/shop-order-form/shop-order-form.component') },
     {
         path: 'counter',
         loadComponent: () => import('./features/counter/counter.component'),
