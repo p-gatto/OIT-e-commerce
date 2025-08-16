@@ -13,7 +13,10 @@ import { ShopFiltersComponent } from './shop-filters/shop-filters.component';
 
 import { ShopFilters } from './shop-filters/shop-filters.model';
 import { ShopFiltersActions } from './store/shop-filters.actions';
-import { selectFilteredList } from './store/shop-filters.feature';
+import { selectFilteredList, selectShopFiltersState } from './store/shop-filters.feature';
+
+import { UiActions } from '../../core/ui/store/ui.actions';
+import { selectSidePanelOpened } from '../../core/ui/store/ui.feature';
 
 @Component({
   selector: 'app-shop',
@@ -26,7 +29,10 @@ import { selectFilteredList } from './store/shop-filters.feature';
 export default class ShopComponent {
 
   store = inject(Store);
-  products = this.store.selectSignal(selectFilteredList)
+
+  products = this.store.selectSignal(selectFilteredList);
+  isOpen = this.store.selectSignal(selectSidePanelOpened);
+  filters = this.store.selectSignal<ShopFilters>(selectShopFiltersState)
 
   ngOnInit() {
     this.store.dispatch(ProductsActions.load());
@@ -39,6 +45,14 @@ export default class ShopComponent {
   updateFilter(filters: Partial<ShopFilters>) {
     this.store.dispatch(ShopFiltersActions.update({ filters }));
     console.log(filters);
+  }
+
+  togglePanel() {
+    this.store.dispatch(UiActions.toggleSidePanel());
+  }
+
+  closePanel() {
+    this.store.dispatch(UiActions.closeSidePanel());
   }
 
 }

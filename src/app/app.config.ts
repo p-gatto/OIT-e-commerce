@@ -15,6 +15,7 @@ import { counterFeature, CounterState } from './features/counter/store/counter.f
 import { productsFeature } from './core/products/store/products.features';
 import { cartFeature } from './features/cart/store/cart.feature';
 import { shopFiltersFeature } from './features/shop/store/shop-filters.feature';
+import { UIFeature } from './core/ui/store/ui.feature';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -33,6 +34,7 @@ export const appConfig: ApplicationConfig = {
     provideState({ name: productsFeature.name, reducer: productsFeature.reducer }),
     provideState({ name: cartFeature.name, reducer: cartFeature.reducer }),
     provideState({ name: shopFiltersFeature.name, reducer: shopFiltersFeature.reducer }),
+    provideState({ name: UIFeature.name, reducer: UIFeature.reducer }),
     provideEffects([productsEffects, cartEffects])
   ]
 };

@@ -1,4 +1,9 @@
-<app-shop-filters (changeFilters)="updateFilter($event)" />
+<app-shop-filters [filters]="filters()" [isOpen]="isOpen()" (changeFilters)="updateFilter($event)"
+    (close)="closePanel()" />
+
+<div class="flex justify-center m-6">
+    <button class="btn" (click)="togglePanel()">FILTERS</button>
+</div>
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
     @for (product of products(); track product.id) {

@@ -1,6 +1,12 @@
-<div class="fixed w-96 top-0 right-0 h-full bg-slate-700 z-10 shadow-lg">
+<div class="fixed w-96 top-0 right-0 h-full bg-slate-700 z-10 shadow-lg transition-all" [ngClass]="{
+    'right-0': isOpen(),
+    '-right-96': !isOpen(),
+  }">
     <form class="flex flex-col gap-4 m-6" [formGroup]="form">
-        <h1 class="text-2xl font-bold">FILTERS</h1>
+        <div class="flex justify-between">
+            <h1 class="text-2xl font-bold">FILTERS</h1>
+            <button (click)="close.emit()">❌</button>
+        </div>
 
         <input type="text" placeholder="Search here" class="input input-bordered w-full" formControlName="text" />
 

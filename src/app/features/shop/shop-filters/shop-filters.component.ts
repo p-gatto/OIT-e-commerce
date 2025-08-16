@@ -1,5 +1,5 @@
-import { JsonPipe } from '@angular/common';
-import { Component, inject, output } from '@angular/core';
+import { JsonPipe, NgClass } from '@angular/common';
+import { Component, effect, inject, input, output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from "@angular/forms";
 
 import { debounceTime } from 'rxjs';
@@ -10,6 +10,7 @@ import { ShopFilters } from './shop-filters.model';
   selector: 'app-shop-filters',
   imports: [
     JsonPipe,
+    NgClass,
     ReactiveFormsModule
   ],
   templateUrl: './shop-filters.component.html',
@@ -17,6 +18,9 @@ import { ShopFilters } from './shop-filters.model';
 })
 export class ShopFiltersComponent {
 
+  filters = input.required<ShopFilters>();
+  isOpen = input.required();
+  close = output();
   changeFilters = output<Partial<ShopFilters>>();
 
   fb = inject(FormBuilder);
@@ -31,6 +35,13 @@ export class ShopFiltersComponent {
 
 
   constructor() {
+    effect(() => {
+      const filters = this.filters();
+      if (filters) {
+        this.form.patchValue(filters, { emitEvent: false });
+      }
+    });
+
     this.form.valueChanges
       .pipe(
         debounceTime(1000)
