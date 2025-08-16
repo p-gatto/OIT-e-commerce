@@ -5,7 +5,7 @@
 
 <div class="flex items-center gap-1">
     <!--ADD-->
-    <div class="m-6 cursor-pointer" (click)="openModalToAddProduct()">
+    <button class="m-6 cursor-pointer" (click)="openModalToAddProduct()">
         <svg width="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -17,7 +17,7 @@
                     stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path>
             </g>
         </svg>
-    </div>
+    </button>
 
     <!--PENDING-->
     @if(pending()) {
@@ -31,7 +31,8 @@
         <h3 class="font-bold text-2lg m-3">
             ADD ITEM
         </h3>
-        <form [formGroup]="form" (submit)="addProduct()" class="flex flex-col gap-3">
+        <form [formGroup]="form" (submit)="saveProduct()" class="flex flex-col gap-3">
+            <!-- <form [formGroup]="form" (submit)="addProduct()" class="flex flex-col gap-3"> -->
             <div class="flex flex-col gap-3">
                 <input type="text" placeholder="Product name" class="input input-bordered w-full max-w-xs"
                     formControlName="name" />
@@ -59,14 +60,14 @@
 
         <tbody>
             @for(product of products(); track product.id) {
-            <tr>
+            <tr (click)="openModalToEditProduct(product)" class="hover:bg-base-200 cursor-pointer">
                 <td>
                     <img [src]="product.image" alt="" width="50">
                 </td>
                 <td>{{product.name}}</td>
                 <td>{{product.type}}</td>
                 <td>€ {{product.cost}}
-                    <button class="btn ml-2" (click)="deleteProduct(product)">Delete</button>
+                    <button class="btn ml-2" (click)="deleteProduct(product, $event)">Delete</button>
                 </td>
             </tr>
             }
