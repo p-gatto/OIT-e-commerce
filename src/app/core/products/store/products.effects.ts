@@ -32,3 +32,26 @@ export const loadProducts = createEffect(
     },
     { functional: true }
 );
+
+
+export const deleteProduct = createEffect((
+    actions$ = inject(Actions),
+    http = inject(HttpClient)
+) => {
+    return actions$.pipe(
+        ofType(ProductsActions.deleteProduct),
+        mergeMap((action) =>
+            http.delete(`http://localhost:3001/products/${action.id}`)
+                .pipe(
+                    map(() =>
+                        ProductsActions.deleteProductSuccess({ id: action.id })
+                    ),
+                    catchError(() =>
+                        of(ProductsActions.deleteProductFail())
+                    )
+                )
+        )
+    );
+},
+    { functional: true }
+);

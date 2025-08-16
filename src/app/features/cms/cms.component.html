@@ -62,7 +62,9 @@
                 </td>
                 <td>{{product.name}}</td>
                 <td>{{product.type}}</td>
-                <td>€ {{product.cost}}</td>
+                <td>€ {{product.cost}}
+                    <button class="btn ml-2" (click)="deleteProduct(product)">Delete</button>
+                </td>
             </tr>
             }
         </tbody>

@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 
 import { ProductsActions } from '../../core/products/store/products.actions';
 import { selectHasError, selectList, selectPending } from '../../core/products/store/products.features';
+import { Product } from '../../core/products/product.model';
 
 @Component({
   selector: 'app-cms',
@@ -19,5 +20,9 @@ export default class CmsComponent {
 
   ngOnInit() {
     this.store.dispatch(ProductsActions.load());
+  }
+
+  deleteProduct(product: Product) {
+    this.store.dispatch(ProductsActions.deleteProduct({ id: product.id }))
   }
 }

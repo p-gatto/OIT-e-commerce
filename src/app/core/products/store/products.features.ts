@@ -37,6 +37,22 @@ export const productsFeature = createFeature({
             pending: false,
             hasError: true
         })),
+        on(ProductsActions.deleteProduct, (state): ProductsState => ({
+            ...state,
+            hasError: false,
+            pending: true
+        })),
+        on(ProductsActions.deleteProductSuccess, (state, action): ProductsState => ({
+            ...state,
+            list: state.list.filter(item => item.id !== action.id),
+            hasError: false,
+            pending: false
+        })),
+        on(ProductsActions.deleteProductFail, (state): ProductsState => ({
+            ...state,
+            hasError: true,
+            pending: false
+        }))
     ),
 });
 
