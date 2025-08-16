@@ -55,3 +55,26 @@ export const deleteProduct = createEffect((
 },
     { functional: true }
 );
+
+
+export const addProduct = createEffect((
+    actions$ = inject(Actions),
+    http = inject(HttpClient)
+) => {
+    return actions$.pipe(
+        ofType(ProductsActions.addProduct),
+        mergeMap((action) =>
+            http.post<Product>(`http://localhost:3001/products`, action.item)
+                .pipe(
+                    map((item) =>
+                        ProductsActions.addProductSuccess({ item })
+                    ),
+                    catchError(() =>
+                        of(ProductsActions.addProductFail())
+                    )
+                )
+        )
+    );
+},
+    { functional: true }
+);
