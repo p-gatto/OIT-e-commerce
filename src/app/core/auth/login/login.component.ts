@@ -1,6 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
+import { Store } from '@ngrx/store';
+
+import { AuthActions } from '../store/auth.actions';
+
 @Component({
   selector: 'app-login',
   imports: [
@@ -11,15 +15,19 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 })
 export default class LoginComponent {
 
-  fb = inject(FormBuilder)
+  store = inject(Store);
+  fb = inject(FormBuilder);
 
   form = this.fb.nonNullable.group({
     username: ['', Validators.required],
     password: ['', Validators.required]
-  })
+  });
 
   login() {
-    console.log(this.form.getRawValue())
+    this.store.dispatch(AuthActions.login({
+      username: this.form.getRawValue().username,
+      password: this.form.getRawValue().password
+    }))
   }
 
 }
