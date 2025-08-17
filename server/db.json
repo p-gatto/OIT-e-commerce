@@ -1,4 +1,10 @@
 {
+  "login": {
+    "token": "abc123"
+  },
+  "profile": {
+    "displayName": "Fabio Biondi"
+  },
   "category": [
     "wood",
     "plastic",
