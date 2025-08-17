@@ -5,6 +5,7 @@ import { provideState, Store } from '@ngrx/store';
 
 import { counterFeature } from './features/counter/store/counter.features';
 import { selectIsCartEmpty } from './features/cart/store/cart.feature';
+import { authGuard } from './core/auth/auth.guard';
 
 export const routes: Routes = [
     { path: 'shop', loadComponent: () => import('./features/shop/shop.component') },
@@ -33,6 +34,10 @@ export const routes: Routes = [
             provideState({ name: 'counter', reducer: counterFeature.reducer }),
         ]
     },
-    { path: 'cms', loadComponent: () => import('./features/cms/cms.component') },
+    {
+        path: 'cms',
+        loadComponent: () => import('./features/cms/cms.component'),
+        canActivate: [authGuard]
+    },
     { path: '', redirectTo: 'shop', pathMatch: 'full' }
 ];

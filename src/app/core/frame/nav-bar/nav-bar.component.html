@@ -27,8 +27,15 @@
         <a class="btn btn-ghost text-xl" routerLink="shop">NGRX Shop</a>
     </div>
     <div class="flex gap-2">
+        <!-- if logged? -->
+        @if(isLogged()) {
+        <!-- show display name and the cms button -->
+        <div>{{ displayName() }}</div>
         <a routerLink="/cms">cms</a>
+        } @else {
+        <!-- otherwise, show the login button -->
         <a routerLink="/login">login</a>
+        }
     </div>
     <div class="flex-none">
         <div class="dropdown dropdown-end">
