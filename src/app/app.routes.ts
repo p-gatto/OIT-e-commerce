@@ -9,6 +9,7 @@ import { selectIsCartEmpty } from './features/cart/store/cart.feature';
 export const routes: Routes = [
     { path: 'shop', loadComponent: () => import('./features/shop/shop.component') },
     { path: 'cart', loadComponent: () => import('./features/cart/cart.component') },
+    { path: 'login', loadComponent: () => import('./core/auth/login/login.component') },
     {
         path: 'order-form',
         loadComponent: () => import('./features/shop-order-form/shop-order-form.component'),

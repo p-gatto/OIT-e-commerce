@@ -1,0 +1,5 @@
+<form [formGroup]="form" class="flex flex-col gap-3 justify-center max-w-xs mx-auto mt-16">
+    <input type="text" placeholder="Username" class="input input-bordered w-full " formControlName="username" />
+    <input type="password" placeholder="Password" class="input input-bordered w-full " formControlName="password" />
+    <button class="btn max-w-xs" (click)="login()" [disabled]="form.invalid">LOGIN</button>
+</form>
