@@ -18,6 +18,8 @@ import { productsFeature } from './core/products/store/products.features';
 import { cartFeature } from './features/cart/store/cart.feature';
 import { shopFiltersFeature } from './features/shop/store/shop-filters.feature';
 import { UIFeature } from './core/ui/store/ui.feature';
+import { authFeature } from './core/auth/store/auth.feature';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -37,6 +39,7 @@ export const appConfig: ApplicationConfig = {
     provideState({ name: cartFeature.name, reducer: cartFeature.reducer }),
     provideState({ name: shopFiltersFeature.name, reducer: shopFiltersFeature.reducer }),
     provideState({ name: UIFeature.name, reducer: UIFeature.reducer }),
+    provideState({ name: authFeature.name, reducer: authFeature.reducer }),
     provideEffects([productsEffects, cartEffects, orderEffects, authEffects])
   ]
 };
