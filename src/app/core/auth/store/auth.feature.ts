@@ -1,4 +1,4 @@
-import { createFeature, createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import { AuthActions } from './auth.actions';
 
 export interface AuthState {
@@ -27,10 +27,17 @@ export const authFeature = createFeature({
         on(AuthActions.getProfileSuccess, (state, action) => {
             return ({ ...state, displayName: action.displayName })
         })
-    )
+    ),
+    extraSelectors: ({ selectToken }) => ({
+        selectIsLogged: createSelector(
+            selectToken,          // get the token
+            token => !!token      // cast to boolean
+        )
+    })
 });
 
 export const {
     selectToken,
-    selectDisplayName
+    selectDisplayName,
+    selectIsLogged
 } = authFeature;
