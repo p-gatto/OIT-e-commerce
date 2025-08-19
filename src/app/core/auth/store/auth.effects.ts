@@ -21,7 +21,7 @@ export const syncWithLocalStorage = createEffect(
             }),
             catchError((err) => {
                 console.log(err)
-                return of()
+                return of(err)
             })
         );
     },
