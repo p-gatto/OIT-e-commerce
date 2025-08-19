@@ -8,10 +8,13 @@ import { AuthActions } from '../../auth/store/auth.actions';
 import { selectIsCartEmpty, selectList, selectTotalCartCost, selectTotalCartItems } from '../../../features/cart/store/cart.feature';
 import { selectDisplayName, selectIsLogged } from '../../auth/store/auth.feature';
 
+import { IfLoggedDirective } from '../../auth/if-logged.directive';
+
 @Component({
   selector: 'app-nav-bar',
   imports: [
-    RouterLink
+    RouterLink,
+    IfLoggedDirective
   ],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss'
