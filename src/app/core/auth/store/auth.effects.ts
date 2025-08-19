@@ -1,12 +1,32 @@
 import { inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType, rootEffectsInit } from '@ngrx/effects';
 
 import { AuthActions } from './auth.actions';
-import { Router } from '@angular/router';
+
+export const syncWithLocalStorage = createEffect(
+    (
+        actions$ = inject(Actions),
+    ) => {
+        return actions$.pipe(
+            ofType(rootEffectsInit),
+            tap(() => {
+                const token = localStorage.getItem('token');
+                const displayName = localStorage.getItem('displayName');
+                return AuthActions.initialize({ token, displayName });
+            }),
+            catchError((err) => {
+                console.log(err)
+                return of(err)
+            })
+        );
+    },
+    { functional: true }
+);
 
 export const login = createEffect((
     actions$ = inject(Actions),
@@ -26,6 +46,9 @@ export const login = createEffect((
             // make the http request passing the parameters "{ username: ..., password: ...}"
             return http.get<{ token: string }>('http://localhost:3001/login', { params })
                 .pipe(
+                    tap((res) => {
+                        localStorage.setItem('token', res.token);
+                    }),
                     map((res) =>
                         // dispatch the "loginSuccess" action passing the "token" as payload
                         AuthActions.loginSuccess({ token: res.token })
@@ -57,6 +80,9 @@ export const loginSuccess = createEffect((
                 }
             })
                 .pipe(
+                    tap((res) => {
+                        localStorage.setItem('displayName', res.displayName)
+                    }),
                     // dispatch the getProfileSuccess action is success,
                     // passing the displayName as payload
                     map((res) =>

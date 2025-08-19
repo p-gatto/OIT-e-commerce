@@ -15,6 +15,9 @@ export const authFeature = createFeature({
     name: 'auth',
     reducer: createReducer(
         initialState,
+        on(AuthActions.initialize, (state, action) => {
+            return ({ ...state, token: action.token, displayName: action.displayName })
+        }),
         on(AuthActions.login, (state, action) => {
             return ({ ...state, token: null })
         }),
