@@ -21,7 +21,7 @@ export const syncWithLocalStorage = createEffect(
             }),
             catchError((err) => {
                 console.log(err)
-                return of(err)
+                return of()
             })
         );
     },
@@ -114,5 +114,24 @@ export const getProfileSuccess = createEffect(
         );
     },
     // dispatch: false => this effect does not dispatch an action
+    { functional: true, dispatch: false }
+);
+
+
+export const logout = createEffect((
+    actions$ = inject(Actions),
+    router = inject(Router)
+) => {
+    return actions$.pipe(
+        ofType(AuthActions.logout),
+        tap(() => {
+            // delete local storage
+            localStorage.removeItem('token')
+            localStorage.removeItem('displayName')
+            // redirect
+            router.navigateByUrl('shop')
+        })
+    );
+},
     { functional: true, dispatch: false }
 );

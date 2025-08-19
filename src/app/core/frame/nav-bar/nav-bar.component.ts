@@ -3,6 +3,8 @@ import { RouterLink } from '@angular/router';
 
 import { Store } from '@ngrx/store';
 
+import { AuthActions } from '../../auth/store/auth.actions';
+
 import { selectIsCartEmpty, selectList, selectTotalCartCost, selectTotalCartItems } from '../../../features/cart/store/cart.feature';
 import { selectDisplayName, selectIsLogged } from '../../auth/store/auth.feature';
 
@@ -25,5 +27,9 @@ export class NavBarComponent {
 
   displayName = this.store.selectSignal(selectDisplayName);
   isLogged = this.store.selectSignal(selectIsLogged);
+
+  logout() {
+    this.store.dispatch(AuthActions.logout())
+  }
 
 }
