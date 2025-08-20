@@ -9,10 +9,15 @@ import { Product, ProductDocument } from './schemas/product.schema';
 import { CreateProductDto } from './dtos/create-product.dto';
 import { UpdateProductDto } from './dtos/update-product.dto';
 
+import { SeedService } from 'src/core/seed/seed.service';
+
 @Injectable()
 export class ProductsService {
+
+
     constructor(
         @InjectModel(Product.name) private productModel: Model<ProductDocument>,
+        private readonly seedService: SeedService
     ) { }
 
     async create(createProductDto: CreateProductDto): Promise<Product> {
@@ -54,4 +59,9 @@ export class ProductsService {
     async getCategories(): Promise<string[]> {
         return ['wood', 'plastic', 'paper'];
     }
+
+    async seedProducts(): Promise<{ message: string, count: number, product?: Product[] }> {
+        return await this.seedService.seedProducts();
+    }
+
 }

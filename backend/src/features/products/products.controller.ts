@@ -22,6 +22,11 @@ export class ProductsController {
         return this.productsService.findAll();
     }
 
+    @Get('seed')
+    async seedProducts() {
+        return await this.productsService.seedProducts();
+    }
+
     @Get('categories')
     getCategories() {
         return this.productsService.getCategories();

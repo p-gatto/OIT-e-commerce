@@ -13,13 +13,14 @@ import { Model } from 'mongoose';
 import { User, UserDocument } from './schemas/user.schema';
 import { LoginDto } from './dots/login.dto';
 
-
+import { SeedService } from '../seed/seed.service';
 
 @Injectable()
 export class AuthService {
     constructor(
         @InjectModel(User.name) private userModel: Model<UserDocument>,
         private jwtService: JwtService,
+        private readonly seedService: SeedService
     ) { }
 
     async validateUser(username: string, password: string): Promise<any> {
@@ -60,5 +61,9 @@ export class AuthService {
             displayName,
         });
         return user.save();
+    }
+
+    async seedUsers(): Promise<{ message: string, count: number, users?: string[], displayNames?: string[] }> {
+        return await this.seedService.seedUsers();
     }
 }

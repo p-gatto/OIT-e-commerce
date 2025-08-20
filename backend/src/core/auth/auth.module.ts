@@ -4,6 +4,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { MongooseModule } from '@nestjs/mongoose';
 
+import { SeedModule } from '../seed/seed.module';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './jwt.strategy';
 import { AuthController } from './auth.controller';
@@ -17,6 +18,7 @@ import { User, UserSchema } from './schemas/user.schema';
             secret: process.env.JWT_SECRET,
             signOptions: { expiresIn: process.env.JWT_EXPIRATION },
         }),
+        SeedModule
     ],
     providers: [AuthService, JwtStrategy],
     controllers: [AuthController],

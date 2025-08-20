@@ -23,4 +23,9 @@ export class AuthController {
     async getProfile(@Request() req) {
         return this.authService.getProfile(req.user.userId);
     }
+
+    @Get('seed')
+    async seedUsers() {
+        return await this.authService.seedUsers();
+    }
 }
