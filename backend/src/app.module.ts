@@ -1,10 +1,26 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
+import { AuthModule } from './core/auth/auth.module';
+import { ProductsModule } from './features/products/products.module';
+import { OrdersModule } from './features/orders/orders.module';
+
 @Module({
-  imports: [],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    MongooseModule.forRoot(process.env.MONGODB_URI!),
+    AuthModule,
+    ProductsModule,
+    OrdersModule
+  ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService]
 })
-export class AppModule {}
+export class AppModule { }
