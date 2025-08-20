@@ -45,8 +45,11 @@ export const login = createEffect(
                     .set('username', action.username)
                     .set('password', action.password)
 
+                const loginDto = { username: action.username, password: action.password };
+
                 // make the http request passing the parameters "{ username: ..., password: ...}"
-                return http.get<{ token: string }>(`${environment.baseApiUrl}/login`, { params })
+                /* return http.get<{ token: string }>(`${environment.baseApiUrl}/login`, { params }) */
+                return http.post<{ token: string }>(`${environment.baseApiUrl}/auth/login`, loginDto)
                     .pipe(
                         tap((res) => {
                             localStorage.setItem('token', res.token);
