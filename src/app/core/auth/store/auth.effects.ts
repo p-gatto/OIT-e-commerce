@@ -6,6 +6,8 @@ import { catchError, map, mergeMap, of, tap } from 'rxjs';
 
 import { Actions, createEffect, ofType, rootEffectsInit } from '@ngrx/effects';
 
+import { environment } from '../../../../environments/environment';
+
 import { AuthActions } from './auth.actions';
 
 export const syncWithLocalStorage = createEffect((
@@ -44,7 +46,7 @@ export const login = createEffect(
                     .set('password', action.password)
 
                 // make the http request passing the parameters "{ username: ..., password: ...}"
-                return http.get<{ token: string }>('http://localhost:3001/login', { params })
+                return http.get<{ token: string }>(`${environment.baseApiUrl}/login`, { params })
                     .pipe(
                         tap((res) => {
                             localStorage.setItem('token', res.token);
@@ -75,7 +77,7 @@ export const loginSuccess = createEffect(
             ofType(AuthActions.loginSuccess),
             mergeMap((action) =>
                 // get the profile passing the token, that is retrieved by the action payload
-                http.get<{ displayName: string }>('http://localhost:3001/profile', {
+                http.get<{ displayName: string }>(`${environment.baseApiUrl}/profile`, {
                     headers: {
                         Authorization: `Bearer ${action.token}`
                     }

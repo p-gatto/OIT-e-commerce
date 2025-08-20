@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { ProductsActions } from '../../core/products/store/products.actions';
 import { selectActive, selectHasError, selectIsPanelOpened, selectList, selectPending } from '../../core/products/store/products.features';
 
-import { Product } from '../../core/products/product.model';
+import { Product } from '../products/product.model';
 import { CmsProductsBarComponent } from './cms-products-bar/cms-products-bar.component';
 import { CmsProductsListComponent } from './cms-products-list/cms-products-list.component';
 import { CmsProductsModalComponent } from './cms-products-modal/cms-products-modal.component';

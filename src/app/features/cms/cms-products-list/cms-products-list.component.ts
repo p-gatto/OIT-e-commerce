@@ -1,6 +1,6 @@
 import { Component, input, output } from '@angular/core';
 
-import { Product } from '../../../core/products/product.model';
+import { Product } from '../../products/product.model';
 
 @Component({
   selector: 'app-cms-products-list',

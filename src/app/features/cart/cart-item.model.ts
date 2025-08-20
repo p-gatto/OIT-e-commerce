@@ -1,4 +1,4 @@
-import { Product } from "../../core/products/product.model";
+import { Product } from "../products/product.model";
 
 export type CartItem = {
     product: Product;

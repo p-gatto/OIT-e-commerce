@@ -7,7 +7,7 @@ import { selectList } from '../../core/products/store/products.features';
 
 import { CartActions } from '../cart/store/cart.actions';
 
-import { Product } from '../../core/products/product.model';
+import { Product } from '../products/product.model';
 
 import { ShopFiltersComponent } from './shop-filters/shop-filters.component';
 
