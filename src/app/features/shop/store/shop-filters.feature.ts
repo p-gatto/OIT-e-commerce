@@ -3,7 +3,7 @@ import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import { ShopFilters } from '../shop-filters/shop-filters.model';
 
 import { ShopFiltersActions } from './shop-filters.actions';
-import { selectList } from '../../../core/products/store/products.features';
+import { selectList } from '../../../features/products/store/products.features';
 
 const initialState: ShopFilters = {
     text: '',

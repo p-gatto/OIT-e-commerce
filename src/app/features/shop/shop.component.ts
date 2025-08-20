@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 
-import { ProductsActions } from '../../core/products/store/products.actions';
-import { selectList } from '../../core/products/store/products.features';
+import { ProductsActions } from '../../features/products/store/products.actions';
+import { selectList } from '../../features/products/store/products.features';
 
 import { CartActions } from '../cart/store/cart.actions';
 

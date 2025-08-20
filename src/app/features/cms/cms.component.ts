@@ -3,8 +3,8 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { Store } from '@ngrx/store';
 
-import { ProductsActions } from '../../core/products/store/products.actions';
-import { selectActive, selectHasError, selectIsPanelOpened, selectList, selectPending } from '../../core/products/store/products.features';
+import { ProductsActions } from '../../features/products/store/products.actions';
+import { selectActive, selectHasError, selectIsPanelOpened, selectList, selectPending } from '../../features/products/store/products.features';
 
 import { Product } from '../products/product.model';
 import { CmsProductsBarComponent } from './cms-products-bar/cms-products-bar.component';
