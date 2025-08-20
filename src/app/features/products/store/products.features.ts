@@ -1,7 +1,7 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 
 import { ProductsActions } from './products.actions';
-import { Product } from '../product.model';
+import { Product } from '../../../features/products/product.model';
 
 // 1. Define the State Type
 export interface ProductsState {

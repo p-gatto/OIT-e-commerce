@@ -8,7 +8,7 @@ import { concatLatestFrom } from '@ngrx/operators';
 
 import { ProductsActions } from './products.actions';
 
-import { Product } from '../product.model';
+import { Product } from '../../../features/products/product.model';
 import { Store } from '@ngrx/store';
 import { selectActive } from './products.features';
 
