@@ -1,3 +1,3 @@
 export const environment = {
-    baseApiUrl: 'http://ecommerce.overitech.it'
+    apiBaseUrl: 'http://ecommerce.overitech.it'
 };
