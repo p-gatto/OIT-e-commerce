@@ -7,7 +7,7 @@
     <table class="table">
         <!-- head -->
         <tbody>
-            @for (item of cartList(); track item.product.id) {
+            @for (item of cartList(); track item.product.name) {
             <tr>
                 <th>
                     <img [src]="item.product.image" [alt]="item.product.name" width="100">
