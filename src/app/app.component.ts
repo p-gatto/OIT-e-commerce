@@ -10,7 +10,7 @@ import { NavBarComponent } from "./core/frame/nav-bar/nav-bar.component";
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'OIT-e-commerce';
 
+  title = 'OIT-e-commerce';
 
 }
