@@ -80,7 +80,7 @@ export const loginSuccess = createEffect(
             ofType(AuthActions.loginSuccess),
             mergeMap((action) =>
                 // get the profile passing the token, that is retrieved by the action payload
-                http.get<{ displayName: string }>(`${environment.apiBaseUrl}/profile`, {
+                http.get<{ displayName: string }>(`${environment.apiBaseUrl}/auth/profile`, {
                     headers: {
                         Authorization: `Bearer ${action.token}`
                     }
