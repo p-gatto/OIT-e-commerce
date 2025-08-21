@@ -49,7 +49,7 @@ export const login = createEffect(
 
                 // make the http request passing the parameters "{ username: ..., password: ...}"
                 /* return http.get<{ token: string }>(`${environment.baseApiUrl}/login`, { params }) */
-                return http.post<{ token: string }>(`${environment.baseApiUrl}/auth/login`, loginDto)
+                return http.post<{ token: string }>(`${environment.apiBaseUrl}/auth/login`, loginDto)
                     .pipe(
                         tap((res) => {
                             localStorage.setItem('token', res.token);
@@ -80,7 +80,7 @@ export const loginSuccess = createEffect(
             ofType(AuthActions.loginSuccess),
             mergeMap((action) =>
                 // get the profile passing the token, that is retrieved by the action payload
-                http.get<{ displayName: string }>(`${environment.baseApiUrl}/profile`, {
+                http.get<{ displayName: string }>(`${environment.apiBaseUrl}/profile`, {
                     headers: {
                         Authorization: `Bearer ${action.token}`
                     }

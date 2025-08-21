@@ -6,6 +6,8 @@ import { catchError, delay, map, mergeMap, Observable, of } from 'rxjs';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
 
+import { environment } from "../../../../environments/environment";
+
 import { ProductsActions } from './products.actions';
 
 import { Product } from '../../../features/products/product.model';
@@ -20,7 +22,7 @@ export const loadProducts = createEffect(
         return actions$.pipe(
             ofType(ProductsActions.load),
             mergeMap(() =>
-                http.get<Product[]>('http://localhost:3001/products')
+                http.get<Product[]>(`${environment.apiBaseUrl}/products`)
                     .pipe(
                         delay(5000),
                         map((items) =>
@@ -44,7 +46,7 @@ export const deleteProduct = createEffect((
     return actions$.pipe(
         ofType(ProductsActions.deleteProduct),
         mergeMap((action) =>
-            http.delete(`http://localhost:3001/products/${action.id}`)
+            http.delete(`${environment.apiBaseUrl}/products/${action.id}`)
                 .pipe(
                     map(() =>
                         ProductsActions.deleteProductSuccess({ id: action.id })
@@ -89,7 +91,7 @@ export const addProduct = createEffect((
     return actions$.pipe(
         ofType(ProductsActions.addProduct),
         mergeMap((action) =>
-            http.post<Product>(`http://localhost:3001/products`, action.item)
+            http.post<Product>(`${environment.apiBaseUrl}/products`, action.item)
                 .pipe(
                     map((item) =>
                         ProductsActions.addProductSuccess({ item })
@@ -112,7 +114,7 @@ export const editProduct = createEffect((
     return actions$.pipe(
         ofType(ProductsActions.editProduct),
         mergeMap((action) =>
-            http.patch<Product>(`http://localhost:3001/products/${action.item.id}`, action.item)
+            http.patch<Product>(`${environment.apiBaseUrl}/products/${action.item.id}`, action.item)
                 .pipe(
                     map((item) =>
                         ProductsActions.editProductSuccess({ item })
