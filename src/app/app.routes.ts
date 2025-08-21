@@ -39,5 +39,6 @@ export const routes: Routes = [
         loadComponent: () => import('./features/cms/cms.component'),
         canActivate: [authGuard]
     },
-    { path: '', redirectTo: 'shop', pathMatch: 'full' }
+    { path: '', redirectTo: 'shop', pathMatch: 'full' },
+    { path: '**', redirectTo: 'shop' }
 ];

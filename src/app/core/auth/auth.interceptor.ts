@@ -31,7 +31,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         switch (err.status) {
           case 401:
             // redirect to login
-            // router.navigateByUrl('/login')
+            router.navigateByUrl('/login')
             console.log(err)
             break;
           default:
@@ -41,6 +41,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
             // - show notification
             // - dispatch an action: store.dispatch(...)
             // ...
+            router.navigateByUrl('/home')
             console.log(err)
             break;
         }
