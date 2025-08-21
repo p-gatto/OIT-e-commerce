@@ -9,7 +9,7 @@ import { ShopFilters } from './shop-filters.model';
 @Component({
   selector: 'app-shop-filters',
   imports: [
-    JsonPipe,
+    /* JsonPipe, */
     NgClass,
     ReactiveFormsModule
   ],

@@ -15,7 +15,7 @@ import { OrderActions } from './store/order.actions';
 @Component({
   selector: 'app-shop-order-form',
   imports: [
-    JsonPipe,
+    /*  JsonPipe, */
     UserCartSummaryComponent,
     UserInfoFormComponent
   ],
