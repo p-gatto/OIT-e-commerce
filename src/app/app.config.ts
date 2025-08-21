@@ -13,7 +13,6 @@ import * as cartEffects from './features/cart/store/cart.effects';
 import * as orderEffects from './features/shop-order-form/store/order.effects';
 import * as authEffects from './core/auth/store/auth.effects';
 
-import { counterFeature, CounterState } from './features/counter/store/counter.features';
 import { productsFeature } from './features/products/store/products.features';
 import { cartFeature } from './features/cart/store/cart.feature';
 import { shopFiltersFeature } from './features/shop/store/shop-filters.feature';

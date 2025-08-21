@@ -1,9 +1,8 @@
 import { inject } from '@angular/core';
 import { Router, Routes } from '@angular/router';
 
-import { provideState, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
-import { counterFeature } from './features/counter/store/counter.features';
 import { selectIsCartEmpty } from './features/cart/store/cart.feature';
 import { authGuard } from './core/auth/auth.guard';
 
@@ -25,13 +24,6 @@ export const routes: Routes = [
                 }
                 return !isCartEmpty()
             }
-        ]
-    },
-    {
-        path: 'counter',
-        loadComponent: () => import('./features/counter/counter.component'),
-        providers: [
-            provideState({ name: 'counter', reducer: counterFeature.reducer }),
         ]
     },
     {
