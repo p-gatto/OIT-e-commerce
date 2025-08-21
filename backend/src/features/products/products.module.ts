@@ -6,7 +6,7 @@ import { Product, ProductSchema } from './schemas/product.schema';
 import { ProductsService } from './products.service';
 import { ProductsController } from './products.controller';
 
-import { SeedModule } from 'src/core/seed/seed.module';
+import { SeedModule } from '../../core/seed/seed.module';
 
 @Module({
     imports: [
