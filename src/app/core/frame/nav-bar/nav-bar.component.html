@@ -19,19 +19,21 @@
                     fill="#ffffff"></path>
             </g>
         </svg>
-        <a class="btn btn-ghost text-xl" routerLink="shop">NGRX Shop</a>
+        <a class="btn btn-ghost text-xl" routerLink="shop">Stationary Shop</a>
     </div>
     <div class="flex gap-2">
 
         <!-- render when logged in -->
         <ng-container *appIfLogged>
-            <a routerLink="/cms">cms</a>
-            <div>{{ displayName() }}</div>
-            <button (click)="logout()">Quit</button>
+            <!--  <a routerLink="/cms">cms</a> -->
+            <button class="btn btn-primary mr-4" routerLink="/cms">CMS</button>
+            <div class="badge badge-info mr-4">{{ displayName() }}</div>
+            <button (click)="logout()" class="btn btn-soft btn-secondary mr-4">Quit</button>
         </ng-container>
 
         <!-- render when logged out -->
-        <a routerLink="/login" *appIfLogged="true">login</a>
+        <!-- <a routerLink="/login" *appIfLogged="true">login</a> -->
+        <button class="btn btn-info mr-4" *appIfLogged="true" routerLink="/login">Login</button>
     </div>
     <div class="flex-none">
         <div class="dropdown dropdown-end">

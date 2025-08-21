@@ -16,8 +16,8 @@
                 <td>
                     <div class="flex gap-3 items-center">
                         € {{item.product.cost}} x {{item.qty}}
-                        <button class="btn" (click)="decreaseQty(item.product.id)">-</button>
-                        <button class="btn" (click)="increaseQty(item.product.id)">+</button>
+                        <button class="btn btn-lg btn-secondary" (click)="decreaseQty(item.product.id)">-</button>
+                        <button class="btn btn-lg btn-primary" (click)="increaseQty(item.product.id)">+</button>
                     </div>
                 </td>
                 <td class="text-right">
