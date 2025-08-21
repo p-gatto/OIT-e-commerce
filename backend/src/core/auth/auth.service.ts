@@ -36,15 +36,15 @@ export class AuthService {
 
     async login(loginDto: LoginDto) {
 
-        console.log('"loginDto" in login method (backend => auth.service.ts): ', loginDto);
+        //console.log('"loginDto" in login method (backend => auth.service.ts): ', loginDto);
         const user = await this.validateUser(loginDto.username, loginDto.password);
 
         if (!user) {
             throw new UnauthorizedException('Invalid credentials');
         }
-        console.log('"user" in login method (backend => auth.service.ts): ', user);
+        //console.log('"user" in login method (backend => auth.service.ts): ', user);
         const payload = { username: user.username, sub: String(user._id) };
-        console.log('"payload" in login method (backend => auth.service.ts): ', payload);
+        //console.log('"payload" in login method (backend => auth.service.ts): ', payload);
         return {
             token: this.jwtService.sign(payload),
         };

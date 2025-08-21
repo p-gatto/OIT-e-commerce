@@ -8,9 +8,9 @@ async function bootstrap() {
   /* const app = await NestFactory.create(AppModule);
   await app.listen(process.env.PORT ?? 3000); */
 
-  console.log('🔧 DEBUG Environment Variables:');
+  /* console.log('🔧 DEBUG Environment Variables:');
   console.log('JWT_SECRET:', process.env.JWT_SECRET ? 'SET ✅' : 'NOT SET ❌');
-  console.log('MONGODB_URI:', process.env.MONGODB_URI ? 'SET ✅' : 'NOT SET ❌');
+  console.log('MONGODB_URI:', process.env.MONGODB_URI ? 'SET ✅' : 'NOT SET ❌'); */
 
   const app = await NestFactory.create(AppModule);
 
