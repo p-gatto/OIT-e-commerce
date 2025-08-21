@@ -19,8 +19,8 @@ export default class LoginComponent {
   fb = inject(FormBuilder);
 
   form = this.fb.nonNullable.group({
-    username: ['', Validators.required],
-    password: ['', Validators.required]
+    username: ['demo', Validators.required],
+    password: ['demo', Validators.required]
   });
 
   login() {
