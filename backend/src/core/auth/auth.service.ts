@@ -43,7 +43,7 @@ export class AuthService {
             throw new UnauthorizedException('Invalid credentials');
         }
         console.log('"user" in login method (backend => auth.service.ts): ', user);
-        const payload = { username: user.username, sub: user._id };
+        const payload = { username: user.username, sub: String(user._id) };
         console.log('"payload" in login method (backend => auth.service.ts): ', payload);
         return {
             token: this.jwtService.sign(payload),

@@ -1,7 +1,9 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/require-await */
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
+import { ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { SeedModule } from '../seed/seed.module';
@@ -14,9 +16,14 @@ import { User, UserSchema } from './schemas/user.schema';
     imports: [
         MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
         PassportModule,
-        JwtModule.register({
-            secret: process.env.JWT_SECRET,
-            signOptions: { expiresIn: process.env.JWT_EXPIRATION },
+        JwtModule.registerAsync({
+            useFactory: async (configService: ConfigService) => ({
+                secret: configService.get<string>('JWT_SECRET'),
+                signOptions: {
+                    expiresIn: configService.get<string>('JWT_EXPIRATION') || '24h'
+                },
+            }),
+            inject: [ConfigService],
         }),
         SeedModule
     ],
