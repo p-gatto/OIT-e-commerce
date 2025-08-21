@@ -9,7 +9,7 @@ import { Product, ProductDocument } from './schemas/product.schema';
 import { CreateProductDto } from './dtos/create-product.dto';
 import { UpdateProductDto } from './dtos/update-product.dto';
 
-import { SeedService } from 'src/core/seed/seed.service';
+import { SeedService } from '../../core/seed/seed.service';
 
 @Injectable()
 export class ProductsService {

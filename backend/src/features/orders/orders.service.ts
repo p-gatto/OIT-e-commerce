@@ -6,8 +6,6 @@ import { Model } from 'mongoose';
 import { Order, OrderDocument } from './schemas/order.schema';
 import { CreateOrderDto } from './dtos/create-order.dto';
 
-
-
 @Injectable()
 export class OrdersService {
 
