@@ -1,3 +1,3 @@
 export const environment = {
-    apiBaseUrl: 'http://ecommerce.overitech.it/api'
+    apiBaseUrl: 'https://oit-e-commerce.vercel.app/api'
 };
