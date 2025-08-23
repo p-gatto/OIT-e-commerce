@@ -23,6 +23,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
                 origin: [
                     'http://localhost:4200',
                     'https://oit-e-commerce.vercel.app',
+                    'https://e-commerce.overitech.it',
                     process.env.FRONTEND_URL
                 ],
                 credentials: true,
