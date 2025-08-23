@@ -8,9 +8,9 @@ export const CartActions = createActionGroup({
     events: {
         'Loaded From Local Storage': props<{ items: CartItem[] }>(),
         'Add': props<{ item: Product }>(),
-        'Remove': props<{ id: number }>(),
-        'Increase Quantity': props<{ id: number }>(),
-        'Decrease Quantity': props<{ id: number }>(),
+        'Remove': props<{ id: string }>(),
+        'Increase Quantity': props<{ id: string }>(),
+        'Decrease Quantity': props<{ id: string }>(),
         'Clear': emptyProps()
     }
 });

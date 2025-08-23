@@ -34,7 +34,6 @@ export const cartFeature = createFeature({
                 })
             }
         }),
-        // UPDATE
         on(CartActions.remove, (state, action) => ({
             ...state,
             list: state.list.filter(item => item.product.id !== action.id)

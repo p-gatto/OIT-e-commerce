@@ -1,7 +1,9 @@
-export type Material = 'wood' | 'plastic' | 'paper';
+/* export type Material = 'wood' | 'plastic' | 'paper'; */
+
+export type Material = 'fruit' | 'vegetable' | 'herbs';
 
 export type Product = {
-    id: number;
+    id: string;
     name: string;
     cost: number;
     image: string;

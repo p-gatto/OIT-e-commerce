@@ -29,10 +29,10 @@ export default class CartComponent {
     this.store.dispatch(CartActions.remove({ id: item.product.id }))
   }
 
-  decreaseQty(cartItemId: number) {
+  decreaseQty(cartItemId: string) {
     this.store.dispatch(CartActions.decreaseQuantity({ id: cartItemId }))
   }
-  increaseQty(cartItemId: number) {
+  increaseQty(cartItemId: string) {
     this.store.dispatch(CartActions.increaseQuantity({ id: cartItemId }))
   }
 
