@@ -35,7 +35,7 @@
         <!-- <a routerLink="/login" *appIfLogged="true">login</a> -->
         <button class="btn btn-info mr-4" *appIfLogged="true" routerLink="/login">Login</button>
     </div>
-    <div class="flex-none">
+    <div class="flex-none" *appIfLogged>
         <div class="dropdown dropdown-end">
             <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                 <div class="indicator">
