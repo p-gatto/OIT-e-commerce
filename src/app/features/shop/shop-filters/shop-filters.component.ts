@@ -51,7 +51,7 @@ export class ShopFiltersComponent {
       )
       .subscribe(data => {
         this.changeFilters.emit(this.form.value);
-        console.log(this.form.value) // output { text: '...', cost: '', wood: true, ....}
+        //console.log(this.form.value) // output { text: '...', cost: '', wood: true, ....}
       })
   }
 

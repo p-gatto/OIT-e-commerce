@@ -44,7 +44,7 @@ export default class ShopComponent {
 
   updateFilter(filters: Partial<ShopFilters>) {
     this.store.dispatch(ShopFiltersActions.update({ filters }));
-    console.log(filters);
+    //console.log(filters);
   }
 
   togglePanel() {
