@@ -7,7 +7,7 @@ import { OrderUserForm } from '../order-user-form.model';
 @Component({
   selector: 'app-user-info-form',
   imports: [
-    JsonPipe,
+    /* JsonPipe, */
     ReactiveFormsModule
   ],
   templateUrl: './user-info-form.component.html',
