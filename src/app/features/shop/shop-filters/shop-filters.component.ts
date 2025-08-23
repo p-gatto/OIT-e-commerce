@@ -28,9 +28,12 @@ export class ShopFiltersComponent {
   form = this.fb.nonNullable.group({
     text: '',       // initialized to an empty string
     cost: 2,        // initialized to 2
-    wood: true,     // initialized to true
-    plastic: true,  // initialized to true
-    paper: false    // initialized to false
+    fruit: true,     // initialized to true
+    vegetable: true,  // initialized to true
+    herbs: false    // initialized to false
+    // wood: true,     // initialized to true
+    // plastic: true,  // initialized to true
+    // paper: false    // initialized to false
   });
 
 

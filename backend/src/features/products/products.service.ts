@@ -57,8 +57,12 @@ export class ProductsService {
     }
 
     async getCategories(): Promise<string[]> {
-        return ['wood', 'plastic', 'paper'];
+        return ['fruit', 'vegetable', 'herbs'];
     }
+
+    /*      async getCategories(): Promise<string[]> {
+            return ['wood', 'plastic', 'paper'];
+        } */
 
     async seedProducts(): Promise<{ message: string, count: number, product?: Product[] }> {
         return await this.seedService.seedProducts();

@@ -8,9 +8,12 @@ import { selectList } from '../../../features/products/store/products.features';
 const initialState: ShopFilters = {
     text: '',
     cost: 2,
-    wood: true,
+    fruit: true,
+    vegetable: true,
+    herbs: true
+    /* wood: true,
     plastic: true,
-    paper: true
+    paper: true */
 }
 
 export const shopFiltersFeature = createFeature({
@@ -29,9 +32,9 @@ export const shopFiltersFeature = createFeature({
                 .filter(p => p.name.toLowerCase().includes(filters.text.toLowerCase()))
                 .filter(p => p.cost <= filters.cost)
                 .filter(p => {
-                    return (filters.wood && p.type === 'wood') ||
-                        (filters.paper && p.type === 'paper') ||
-                        (filters.plastic && p.type === 'plastic')
+                    return (filters.fruit && p.type === 'fruit') ||
+                        (filters.vegetable && p.type === 'vegetable') ||
+                        (filters.herbs && p.type === 'herbs')
                 })
         )
     })
@@ -40,9 +43,9 @@ export const shopFiltersFeature = createFeature({
 export const {
     selectText,
     selectCost,
-    selectWood,
-    selectPlastic,
-    selectPaper,
+    selectFruit,
+    selectVegetable,
+    selectHerbs,
     selectFilteredList,
     selectShopFiltersState
 } = shopFiltersFeature;

@@ -1,7 +1,10 @@
 export type ShopFilters = {
     text: string;
     cost: number;
-    wood: boolean;
+    fruit: boolean;
+    vegetable: boolean;
+    herbs: boolean;
+    /* wood: boolean;
     plastic: boolean;
-    paper: boolean;
+    paper: boolean; */
 }
