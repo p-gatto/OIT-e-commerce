@@ -9,7 +9,7 @@
     @for (product of products(); track product.name) {
     <div class="card bg-slate-900 shadow-xl">
         <figure>
-            <img [src]="product.image" [alt]="product.name" />
+            <img [src]="product.image" [alt]="product.name" class="product-image" />
         </figure>
         <div class="card-body">
             <h2 class="card-title">{{product.name}}</h2>
