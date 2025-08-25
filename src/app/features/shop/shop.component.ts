@@ -3,7 +3,7 @@ import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { ProductsActions } from '../../features/products/store/products.actions';
-import { selectList } from '../../features/products/store/products.features';
+import { selectList, selectPending } from '../../features/products/store/products.features';
 
 import { CartActions } from '../cart/store/cart.actions';
 
@@ -32,7 +32,9 @@ export default class ShopComponent {
 
   products = this.store.selectSignal(selectFilteredList);
   isOpen = this.store.selectSignal(selectSidePanelOpened);
-  filters = this.store.selectSignal<ShopFilters>(selectShopFiltersState)
+  filters = this.store.selectSignal<ShopFilters>(selectShopFiltersState);
+
+  isLoading = this.store.selectSignal(selectPending); // Aggiunto per lo spinner
 
   ngOnInit() {
     this.store.dispatch(ProductsActions.load());

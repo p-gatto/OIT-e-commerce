@@ -1,4 +1,4 @@
-<app-shop-filters [filters]="filters()" [isOpen]="isOpen()" (changeFilters)="updateFilter($event)"
+<!-- <app-shop-filters [filters]="filters()" [isOpen]="isOpen()" (changeFilters)="updateFilter($event)"
     (close)="closePanel()" />
 
 <div class="flex justify-center m-6">
@@ -21,4 +21,51 @@
         </div>
     </div>
     }
+</div> -->
+
+<app-shop-filters [filters]="filters()" [isOpen]="isOpen()" (changeFilters)="updateFilter($event)"
+    (close)="closePanel()" />
+
+<div class="flex justify-center m-6">
+    <button class="btn btn-outline btn-accent" (click)="togglePanel()">FILTERS</button>
 </div>
+
+<!-- SPINNER DI CARICAMENTO -->
+@if (isLoading()) {
+<div class="flex justify-center items-center min-h-[400px]">
+    <div class="text-center">
+        <span class="loading loading-spinner loading-lg text-accent"></span>
+        <p class="mt-4 text-lg font-medium">Caricamento prodotti in corso...</p>
+    </div>
+</div>
+} @else {
+<!-- GRIGLIA PRODOTTI -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+    @for (product of products(); track product.name) {
+    <div class="card bg-slate-900 shadow-xl">
+        <figure>
+            <img [src]="product.image" [alt]="product.name" class="product-image" />
+        </figure>
+        <div class="card-body">
+            <h2 class="card-title">{{product.name}}</h2>
+            <div class="card-actions justify-end">
+                <button class="btn btn-outline btn-primary" (click)="addProductToCart(product)">
+                    Add to Cart | € {{product.cost}}
+                </button>
+            </div>
+        </div>
+    </div>
+    } @empty {
+    <div class="col-span-full flex justify-center items-center min-h-[200px]">
+        <div class="alert alert-info">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                class="stroke-current shrink-0 w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span>Nessun prodotto trovato con i filtri selezionati</span>
+        </div>
+    </div>
+    }
+</div>
+}
