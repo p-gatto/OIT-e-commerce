@@ -28,7 +28,7 @@ export class OrderUser {
 export class CartProduct {
 
     @Prop({ required: true })
-    id: number;
+    id: string;
 
     @Prop({ required: true })
     name: string;

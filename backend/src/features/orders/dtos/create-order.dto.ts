@@ -20,8 +20,8 @@ export class OrderUserDto {
 }
 
 export class CartProductDto {
-    @IsNumber()
-    id: number;
+    @IsString()
+    id: string;
 
     @IsString()
     name: string;
