@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { OrderUserForm } from './order-user-form.model';
 import { UserCartSummaryComponent } from './user-cart-summary/user-cart-summary.component';
 import { UserInfoFormComponent } from './user-info-form/user-info-form.component';
+import { OrderConfirmationDialogComponent } from './order-confirmation-dialog/order-confirmation-dialog.component';
 
 import { CartItem } from '../cart/cart-item.model';
 import { selectList, selectTotalCartCost } from '../cart/store/cart.feature';
@@ -17,7 +18,8 @@ import { OrderActions } from './store/order.actions';
   imports: [
     /*  JsonPipe, */
     UserCartSummaryComponent,
-    UserInfoFormComponent
+    UserInfoFormComponent,
+    OrderConfirmationDialogComponent
   ],
   templateUrl: './shop-order-form.component.html',
   styleUrl: './shop-order-form.component.scss'
